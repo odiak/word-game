@@ -112,13 +112,14 @@ export const App: FC = () => {
           <Button
             onClick={() => {
               const e = document.createElement('textarea')
-              e.value = guesses
-                .map((g) =>
+              e.value = [
+                location.href,
+                ...guesses.map((g) =>
                   g
                     .map(({ type }) => (type === 'noop' ? '⬜' : type === 'exact' ? '🟩' : '🟨'))
                     .join('')
                 )
-                .join('\n')
+              ].join('\n')
               document.body.appendChild(e)
               e.select()
               document.execCommand('copy')
