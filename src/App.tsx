@@ -108,24 +108,26 @@ export const App: FC = () => {
           <div>usable chars: {[...usableChars].join(' ')}</div>
         </>
       ) : (
-        <Button
-          onClick={() => {
-            const e = document.createElement('textarea')
-            e.value = guesses
-              .map((g) =>
-                g
-                  .map(({ type }) => (type === 'noop' ? '⬜' : type === 'exact' ? '🟩' : '🟨'))
-                  .join('')
-              )
-              .join('\n')
-            document.body.appendChild(e)
-            e.select()
-            document.execCommand('copy')
-            document.body.removeChild(e)
-          }}
-        >
-          copy result
-        </Button>
+        <div>
+          <Button
+            onClick={() => {
+              const e = document.createElement('textarea')
+              e.value = guesses
+                .map((g) =>
+                  g
+                    .map(({ type }) => (type === 'noop' ? '⬜' : type === 'exact' ? '🟩' : '🟨'))
+                    .join('')
+                )
+                .join('\n')
+              document.body.appendChild(e)
+              e.select()
+              document.execCommand('copy')
+              document.body.removeChild(e)
+            }}
+          >
+            copy result
+          </Button>
+        </div>
       )}
       {guesses.map((g, i) => (
         <GuessWord key={i}>
